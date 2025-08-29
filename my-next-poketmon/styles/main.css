@@ -11,12 +11,12 @@ header {
 }
 .menu-box {
     display: flex;
-    gap: 23px;
+    gap: 12px;
     align-items: center;
 }
 .menu-box button {
-    width: 45px;
-    height: 45px;
+    width: 43px;
+    height: 43px;
     border-radius: 500px;
     background-color: var(--main-color);
     border: none;
@@ -24,7 +24,59 @@ header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.4;
 }
+.menu-box li {
+    padding: 6px;
+    border: 1px solid var(--sub-color);
+    background-color: var(--sub-color);
+    border-radius: 100%;
+}
+.menu-box li.search {
+    display: flex;
+    transition: all 0.4s;
+}
+.menu-box li.search:focus-within {
+    box-shadow: 0 4px 16px rgb(21, 55, 111, 0.5);
+}
+.menu-box #search-pokemon {
+    display: inline-block;
+    border: unset;
+    border-radius: 500px;
+    width: 0;
+    margin-right: 0;
+    background-color: var(--sub-color);
+    transition: all 0.4s;
+}
+.menu-box #search-pokemon:focus {
+    border: unset;
+    outline: unset;
+}
+
+.menu-box li.search.on {
+    border-radius: 500px;
+}
+.menu-box li.search.on #search-pokemon {
+    width: 300px;
+    padding-left: 12px;
+}
+.menu-box li.search.on button {
+    background: linear-gradient(270deg, var(--main-color-dark), var(--main-color));
+    background-size: 200% 200%;
+    animation: gradientBack 1.3s ease infinite;
+}
+@keyframes gradientBack {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .main-message-container {
     margin: 40px auto 0;
 }
@@ -46,6 +98,12 @@ header {
     background-color: var(--main-color);
     padding: 15px 15px 20px;
 }
+.card-slot:hover {
+    background: linear-gradient(235deg, #000, var(--main-color));
+    background-size: 200% 200%;
+    animation: gradientBack 2s linear infinite;
+}
+
 .card-slot .img-box {
     position: relative;
     aspect-ratio: 236 / 180;
