@@ -7,13 +7,26 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState([]);
+
+  // useEffect(()=>{
+  //   if(!section.contains(p)) {
+
+  //   }
+
+  // },[page])
+
   useEffect(() => {
     const fetchPokemonData = async () => {
+    const section = document.querySelector('section')
+    const p = document.createElement('p')
+    p.classList.add('loading-state')
+    p.textContent = '로딩..'
+    section.append(p)
       try {
           const res = await fetch(`/api/pokemons?page=${page}`);
           const data = await res.json();
           p.remove();
-          //console.log(page)
+          console.log(page)
           //console.log(data) 결과 순서가 뒤죽박죽으로 나오는걸 확인
           setPokemons(prev => [...prev, ...data])
       } catch (err) {
@@ -35,13 +48,13 @@ export default function Home() {
 
   useEffect(()=>{
     const handleScroll = () => {
-      if(throttleTimer) return;
+      if(throttleTimer || document.querySelector('.loading-state')) return;
       throttleTimer = setTimeout(()=>{
         if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
           setPage(prev => prev + 1);
         }
         throttleTimer = null
-      },1000)
+      },1300)
       //console.log(`innerHeight: ${window.innerHeight}, scrollY: ${window.scrollY}, document: ${document.body.offsetHeight}`)
     }
     window.addEventListener('scroll', handleScroll);
