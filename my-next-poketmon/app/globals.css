@@ -1,6 +1,35 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-color:#3666AC;
+  --main-color-dark:#15376F;
+  --sub-color:#FFCC03;
+  --point-color: #EC1D27;
+}
+
+@font-face {
+  font-family: 'Paperlozy-R';
+  src: url('/fonts/Paperlogy-4Regular.woff2') format('woff2'),
+    url('/fonts/Paperlogy-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlozy-B';
+  src: url('/fonts/Paperlogy-7Bold.woff2') format('woff2'),
+    url('/fonts/Paperlogy-7Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlozy-EB';
+  src: url('/fonts/Paperlogy-8ExtraBold.woff2') format('woff2'),
+    url('/fonts/Paperlogy-8ExtraBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -10,6 +39,9 @@
   }
 }
 
+html {
+  font-size: 10px;
+}
 html,
 body {
   max-width: 100vw;
@@ -17,9 +49,10 @@ body {
 }
 
 body {
+  font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Paperlozy-R', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

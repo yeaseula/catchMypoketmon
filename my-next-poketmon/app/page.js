@@ -14,19 +14,24 @@ export default function Home() {
       .catch(console.error);
   }, []);
   return (
-    <div>
-      {pokemons.map((ele)=>(
-        <div key={ele.id} className="card-slot">
-          <div className="img-box" >
-            <img src={ele.image} alt={ele.name} />
-            <div className="monster-index">NO.{ele.id}</div>
+    <section>
+      <div className="main-message-container">
+        <p>나만의 포켓몬 도감을 완성해보세요!</p>
+      </div>
+      <div className="cardslot-container">
+        {pokemons.map((ele)=>(
+          <div key={ele.id} className="card-slot">
+            <div className="img-box" >
+              <img src={ele.image} alt={ele.name} />
+              <div className="monster-index">NO.{ele.id}</div>
+            </div>
+            <div className="text-box">
+              <p className="monster-name">{ele.name}</p>
+              <div className="monster-type">{ele.types}</div>
+            </div>
           </div>
-          <div className="text-box">
-            <p className="monster-name">{ele.name}</p>
-          </div>
-          <div className="monster-type">{ele.types}</div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </section>
   );
 }
