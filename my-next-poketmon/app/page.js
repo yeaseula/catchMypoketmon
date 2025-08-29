@@ -5,14 +5,48 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState([]);
-
   useEffect(() => {
-    fetch("/api/pokemons")
-      .then((res) => res.json())
-      .then((data) => {setPokemons(data)})
-      .catch(console.error);
-  }, []);
+    const fetchPokemonData = async () => {
+      try {
+          const res = await fetch(`/api/pokemons?page=${page}`);
+          const data = await res.json();
+          p.remove();
+          //console.log(page)
+          //console.log(data) 결과 순서가 뒤죽박죽으로 나오는걸 확인
+          setPokemons(prev => [...prev, ...data])
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetchPokemonData();
+
+    //iscounting으로 함수의 실행과 종료를 명확히 함
+
+    // fetch(`/api/pokemons?page=${page}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {setPokemons(prev => [...prev, ...data])})
+    //   .catch(console.error);
+  }, [page]);
+
+  let throttleTimer = null;
+
+  useEffect(()=>{
+    const handleScroll = () => {
+      if(throttleTimer) return;
+      throttleTimer = setTimeout(()=>{
+        if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+          setPage(prev => prev + 1);
+        }
+        throttleTimer = null
+      },1000)
+      //console.log(`innerHeight: ${window.innerHeight}, scrollY: ${window.scrollY}, document: ${document.body.offsetHeight}`)
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll)
+  },[])
   return (
     <section>
       <div className="main-message-container">

@@ -1,6 +1,8 @@
-export async function GET() {
+export async function GET(request) {
     try {
-        const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
+        const {searchParams} =new URL(request.url);
+        const page = parseInt(searchParams.get('page')) || 0;
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${page * 20}`);
         const data = await res.json();
 
         const pokemons = await Promise.all(
