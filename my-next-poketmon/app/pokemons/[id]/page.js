@@ -6,18 +6,39 @@ import { useParams } from "next/navigation";
 export default function Details() {
     const {id} = useParams();
     const [poketmons,setPoketmons] = useState([]);
+    const [isSaved,setIsSaved] = useState(false);
+
+
     useEffect(()=>{
         console.log(id)
         async function datass () {
             const res = await fetch(`/api/pokemons/${id}`);
             const data = await res.json();
-            console.log(data)
             setPoketmons([data])
-        }
+            const scraptarget = JSON.parse(localStorage.getItem("scrap") || "[]")
 
+            setIsSaved( scraptarget.some((ele)=>{ele.id === data.id}) )
+        }
         datass();
     },[id])
 
+
+    const handleScrap = () => {
+      const scraptarget = JSON.parse(localStorage.getItem("scrap") || "[]")
+      //console.log(poketmons)
+      //스크랩되어있지 않았을 시 실행
+      if(!scraptarget.some((ele)=>{ele.id === poketmons[0].id})) {
+        scraptarget.push({
+          id : poketmons[0].id,
+          name: poketmons[0].name,
+          image: poketmons[0].image,
+          types: poketmons[0].types
+        })
+        localStorage.setItem("scrap", JSON.stringify(scraptarget));
+        setIsSaved(true)
+      }
+      //localStorage.setItem('key', JSON.stringify(scraptarget))
+    }
     return (
         <div>
         {poketmons.map((ele)=>(
@@ -42,7 +63,9 @@ export default function Details() {
                   특성은 {ele.abilities.join(',')}이다.
                 </div>
                 <div className="detail-btn-container">
-                  <button type="button" className="btn-style scrap-button">카드 찜하기</button>
+                  <button type="button" className={`btn-style scrap-button ${isSaved ? "off" : ""}`} onClick={handleScrap} disabled={isSaved}>
+                    {isSaved ? `${ele.name} 넌 내꺼야` : "카드 찜하기"}
+                  </button>
                   <button type="button" className="btn-style back-btn">다른 포켓몬 보러가기</button>
                 </div>
               </div>

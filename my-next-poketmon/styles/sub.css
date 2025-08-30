@@ -79,13 +79,24 @@
     font-size: 2rem;
     background: var(--sub-color);
     border: unset;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 .detail-btn-container .btn-style:hover {
     background: linear-gradient(230deg, var(--main-color-dark), var(--main-color));
     background-size: 200% 200%;
     animation: gradientBack 1.3s ease infinite;
     color: #fff;
+}
+.scrap-button.off {
+    background-color: #e0e0e0;
+    color: #000;
+    cursor: initial;
+}
+.scrap-button.off:hover {
+    background: unset;
+    background-color: #e0e0e0;
+    color: #000;
+    animation: unset;
 }
 @keyframes gradientBack {
     0% {
