@@ -49,7 +49,6 @@ body {
 }
 
 body {
-  padding-bottom: 150px;
   font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);

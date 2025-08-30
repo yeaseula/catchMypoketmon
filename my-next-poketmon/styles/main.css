@@ -93,7 +93,7 @@ header {
     font-family: 'Paperlozy-EB';
 }
 .cardslot-container {
-    margin-top: 70px;
+    margin: 70px 0 120px 0;
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
