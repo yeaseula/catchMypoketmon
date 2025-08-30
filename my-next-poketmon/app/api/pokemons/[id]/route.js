@@ -11,8 +11,8 @@ export async function GET(request,{params}) {
         const koreanName = koreaNameObj ? koreaNameObj.name : detailData.name;
 
         // 타입, 키, 몸무게, 공격 등 상세정보
-        const height = detailData.height;
-        const weight = detailData.weight;
+        const height = (detailData.height * 0.1).toFixed(1);
+        const weight = (detailData.weight * 0.1).toFixed(1);
 
         const types = await Promise.all(
           detailData.types.map(async(a)=>{

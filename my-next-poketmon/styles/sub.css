@@ -1,0 +1,78 @@
+.detail-container {
+    margin-top: 170px;
+    display: flex;
+    gap: 90px;
+}
+.detail-card-img {
+    flex-basis: 325px;
+    flex-shrink: 0;
+    aspect-ratio: 3 / 4;
+    border-radius: 15px;
+    background-color: var(--main-color);
+    padding: 30px;
+}
+.detail-card-img .img-container {
+    height: 100%;
+    border-radius: 15px;
+    outline: 8px solid var(--sub-color);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detail-card-img .img-container img {
+    max-width: 80%;
+}
+.detail-container .detail-text {
+    position: relative;
+    flex-grow: 1;
+    padding-top: 20px;
+}
+.detail-container .monster-detail-index {
+    font-size: 2rem;
+}
+.detail-container .monster-detail-name {
+    margin-top: 25px;
+    font-size: 3.2rem;
+    font-family: 'Paperlozy-EB';
+}
+.detail-container .detail-info {
+    margin-top: 50px;
+    font-size: 2.4rem;
+}
+.detail-btn-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    gap: 20px;
+}
+.detail-btn-container .btn-style {
+    flex-basis: calc(50% - 10px);
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 2rem;
+    background: var(--sub-color);
+    border: unset;
+    transition: all 0.5s;
+}
+.detail-btn-container .btn-style:hover {
+    background: linear-gradient(230deg, var(--main-color-dark), var(--main-color));
+    background-size: 200% 200%;
+    animation: gradientBack 1.3s ease infinite;
+    color: #fff;
+}
+@keyframes gradientBack {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -53,8 +53,8 @@ export default function Home() {
         <p>나만의 포켓몬 도감을 완성해보세요!</p>
       </div>
       <div className="cardslot-container">
-        {pokemons.map((ele)=>(
-          <Link href={`/pokemons/${ele.id}`} key={ele.id}>
+        {pokemons.map((ele,idx)=>(
+          <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
             <div className="card-slot">
               <div className="img-box" >
                 <img src={ele.image} alt={ele.name} />
