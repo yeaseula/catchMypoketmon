@@ -110,9 +110,20 @@
     }
 }
 
+/* scrap */
 .is-not-cardlist {
     display: none;
 }
 .is-not-cardlist.on {
     display: block;
+}
+.scrap-slots-container {
+    border: 1px solid var(--main-color-dark);
+    width: 900px;
+    margin: 0 auto;
+}
+.scrap-slots {
+    position: absolute;
+    width: 370px;
+    aspect-ratio: 3 / 4;
 }

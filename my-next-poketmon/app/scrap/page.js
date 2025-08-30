@@ -12,11 +12,14 @@ export default function ScrapPage() {
         setLocalstate(stateLocal)
         const States = stateLocal.length !== 0? true : false;
         setIsLocal(States)
+
+        //slot갯수 5개 이하면 빈값 추가, 빈 슬롯 노출
         const minSlots = 5;
-        setDisplayArr(prev => [...prev,...stateLocal])
-        while (displayArr.length < minSlots) {
-            displayArr.push(null)
-        }
+        const arrList = [...stateLocal];
+        while (arrList.length < minSlots) arrList.push(null);
+        setDisplayArr(arrList)
+        //gsap
+
     },[])
     return (
         <div>
@@ -24,20 +27,19 @@ export default function ScrapPage() {
                 등록된 카드가 없어요
             </div>
             {displayArr.map((ele,idx)=>(
-                <div className='slots slotWrapper' key={`scrap-${idx}`}>
+                <div className='scrap-slots-container slotWrapper' key={`scrap-${idx}`}>
                     {ele ? (
-                        <div className="card box creative-pro">
+                        <div className="scrap-slots">
                             <img src={ele.image}></img>
                             <p>{ele.id}</p>
                             <p>{ele.name}</p>
                             <p>{ele.types}</p>
                         </div>
                     ) : (
-                        <div className="card box creative-pro">
+                        <div className="scrap-slots">
                             <p>등록된 카드가 없습니다.</p>
                         </div>
                     )}
-
                 </div>
             ))}
         </div>
