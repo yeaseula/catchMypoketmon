@@ -109,3 +109,10 @@
         background-position: 0% 50%;
     }
 }
+
+.is-not-cardlist {
+    display: none;
+}
+.is-not-cardlist.on {
+    display: block;
+}
