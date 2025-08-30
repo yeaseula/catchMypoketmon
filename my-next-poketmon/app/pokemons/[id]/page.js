@@ -7,19 +7,19 @@ export default function Details() {
     const {id} = useParams();
     const [poketmons,setPoketmons] = useState([]);
     const [isSaved,setIsSaved] = useState(false);
-
+    const [scrapList,setScrapList] = useState([]);
 
     useEffect(()=>{
         //console.log(`페이지로딩 ${isSaved}`)
-        async function datass () {
+
+        async function setData () {
             const res = await fetch(`/api/pokemons/${id}`);
             const data = await res.json();
             setPoketmons([data])
             const scraptarget = JSON.parse(localStorage.getItem("scrap") || "[]")
-
-            setIsSaved(scraptarget.some((ele)=>{ele.id === data.id}))
+            setIsSaved(scraptarget.some((ele)=>(ele.id === data.id)))
         }
-        datass();
+        setData();
     },[id])
 
 
@@ -28,15 +28,18 @@ export default function Details() {
       //console.log(poketmons)
       //스크랩되어있지 않았을 시 실행
       if(!scraptarget.some((ele)=>{ele.id === poketmons[0].id})) {
-        scraptarget.push({
-          id : poketmons[0].id,
-          name: poketmons[0].name,
-          image: poketmons[0].image,
-          types: poketmons[0].types
-        })
-        localStorage.setItem("scrap", JSON.stringify(scraptarget));
+        const newSaved = [
+          ...scraptarget,
+          { id : poketmons[0].id,
+            name: poketmons[0].name,
+            image: poketmons[0].image,
+            types: poketmons[0].types
+          }
+        ]
+
+        localStorage.setItem("scrap", JSON.stringify(newSaved));
+        setScrapList(newSaved)
         setIsSaved(true)
-        //console.log(`실행후 ${isSaved}`)
       }
       //localStorage.setItem('key', JSON.stringify(scraptarget))
     }
