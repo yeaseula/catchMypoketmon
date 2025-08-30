@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
@@ -26,9 +26,15 @@ export default function Details() {
                 <div className="img-container">
                   <img src={ele.image} alt={ele.name} />
                 </div>
+                <Image src="/images/ball.png"
+                alt="흔들리는 몬스터볼"
+                width={135}
+                height={135}
+                className="monster-ball"
+                ></Image>
               </div>
               <div className="detail-text">
-                <p className="monster-detail-index">NO.{ele.id}</p>
+                <span className="monster-detail-index">NO.{ele.id}</span>
                 <p className="monster-detail-name">{ele.name}</p>
                 <div className="detail-info">
                   키 {ele.height}m, 몸무게 {ele.weight}kg, {ele.types.map((n)=>(<span className="detail-type" key={n}>{n}</span>))} 포켓몬이다.<br></br>
