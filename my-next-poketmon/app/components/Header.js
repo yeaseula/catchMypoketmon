@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import Link from 'next/link';
 
 export default function Header () {
     const [onstate,setOnstate] = useState(false);
@@ -55,6 +56,7 @@ export default function Header () {
                     </button>
                 </li>
                 <li className="my-scrab">
+                    <Link href={`/scrap`}>
                     <button type="button">
                         <Image
                             src="/images/favorit-icon-w.svg"
@@ -63,6 +65,7 @@ export default function Header () {
                             height={32}
                         ></Image>
                     </button>
+                    </Link>
                 </li>
             </nav>
         </header>

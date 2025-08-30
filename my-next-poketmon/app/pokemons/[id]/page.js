@@ -10,14 +10,14 @@ export default function Details() {
 
 
     useEffect(()=>{
-        console.log(id)
+        //console.log(`페이지로딩 ${isSaved}`)
         async function datass () {
             const res = await fetch(`/api/pokemons/${id}`);
             const data = await res.json();
             setPoketmons([data])
             const scraptarget = JSON.parse(localStorage.getItem("scrap") || "[]")
 
-            setIsSaved( scraptarget.some((ele)=>{ele.id === data.id}) )
+            setIsSaved(scraptarget.some((ele)=>{ele.id === data.id}))
         }
         datass();
     },[id])
@@ -36,6 +36,7 @@ export default function Details() {
         })
         localStorage.setItem("scrap", JSON.stringify(scraptarget));
         setIsSaved(true)
+        //console.log(`실행후 ${isSaved}`)
       }
       //localStorage.setItem('key', JSON.stringify(scraptarget))
     }
