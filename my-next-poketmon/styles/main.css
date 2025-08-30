@@ -98,8 +98,10 @@ header {
     gap: 30px;
     flex-wrap: wrap;
 }
-.card-slot {
+.cardslot-container > a {
     flex-basis: calc(25% - 30px);
+}
+.card-slot {
     border-radius: 15px;
     background-color: var(--main-color);
     padding: 15px 15px 20px;

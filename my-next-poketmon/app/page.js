@@ -3,17 +3,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 export default function Home() {
   const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState([]);
-
-  // useEffect(()=>{
-  //   if(!section.contains(p)) {
-
-  //   }
-
-  // },[page])
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -35,13 +29,6 @@ export default function Home() {
     }
 
     fetchPokemonData();
-
-    //iscounting으로 함수의 실행과 종료를 명확히 함
-
-    // fetch(`/api/pokemons?page=${page}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {setPokemons(prev => [...prev, ...data])})
-    //   .catch(console.error);
   }, [page]);
 
   let throttleTimer = null;
@@ -67,16 +54,18 @@ export default function Home() {
       </div>
       <div className="cardslot-container">
         {pokemons.map((ele)=>(
-          <div key={ele.id} className="card-slot">
-            <div className="img-box" >
-              <img src={ele.image} alt={ele.name} />
-              <div className="monster-index">NO.{ele.id}</div>
+          <Link href={`/pokemons/${ele.id}`} key={ele.id}>
+            <div className="card-slot">
+              <div className="img-box" >
+                <img src={ele.image} alt={ele.name} />
+                <div className="monster-index">NO.{ele.id}</div>
+              </div>
+              <div className="text-box">
+                <p className="monster-name">{ele.name}</p>
+                <div className="monster-type">{ele.types}</div>
+              </div>
             </div>
-            <div className="text-box">
-              <p className="monster-name">{ele.name}</p>
-              <div className="monster-type">{ele.types}</div>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
