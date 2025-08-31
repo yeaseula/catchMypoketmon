@@ -29,12 +29,12 @@ export default function Details() {
       //스크랩되어있지 않았을 시 실행
       if(!scraptarget.some((ele)=>{ele.id === poketmons[0].id})) {
         const newSaved = [
-          ...scraptarget,
           { id : poketmons[0].id,
             name: poketmons[0].name,
             image: poketmons[0].image,
             types: poketmons[0].types
-          }
+          },
+          ...scraptarget
         ]
 
         localStorage.setItem("scrap", JSON.stringify(newSaved));

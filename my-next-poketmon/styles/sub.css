@@ -117,9 +117,19 @@
 .is-not-cardlist.on {
     display: block;
 }
+.my-collection-section {
+    margin: 70px auto 150px;
+}
+.my-collection-title {
+    margin-bottom: 70px;
+    text-align: center;
+    font-size: 3.6rem;
+    font-family: 'Paperlozy-EB';
+}
 .slotWrapper {
     width: 1000px;
-    margin: 70px auto;
+    height: 500px;
+    margin: 0 auto;
 }
 .scrap-slots-container {
     border: 1px solid var(--main-color-dark);
@@ -214,4 +224,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.more-view-btn {
+    background-color: var(--main-color-dark);
+    border-radius: 15px;
+    height: 55px;
+    line-height: 51px;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    display: none;
+    margin: 0 auto;
+    width: 330px;
+    border: unset;
+}
+.more-view-btn:hover {
+    background: linear-gradient(230deg, var(--main-color-dark), var(--main-color));
+    background-size: 200% 200%;
+    animation: gradientBack 1.3s ease infinite;
+}
+.more-view-btn.on {
+    display: block;
 }

@@ -5,19 +5,31 @@ import { gsap } from 'gsap';
 
 export default function ScrapPage() {
     const [displayArr,setDisplayArr] = useState([])
-    const [isLocal,setIsLocal] = useState(false)
     const [localstate,setLocalstate] = useState([])
+    const [isLocal,setIsLocal] = useState(false)
+    const [isBtnOn,setIsBtnOn] = useState(false)
     useEffect(()=>{
         const stateLocal = JSON.parse(localStorage.getItem("scrap") || "[]");
         setLocalstate(stateLocal)
-        const States = stateLocal.length !== 0? true : false;
+        const States = stateLocal.length !== 0? false : true;
         setIsLocal(States)
 
         //slot갯수 6개 이하면 빈값 추가, 빈 슬롯 노출
-        const minSlots = 6;
-        const arrList = [...stateLocal];
-        while (arrList.length < minSlots) arrList.push(null);
-        setDisplayArr(arrList)
+        if(stateLocal.length < 7) {
+            const minSlots = 6;
+            const arrList = [...stateLocal];
+            while (arrList.length < minSlots) arrList.push(null);
+            setDisplayArr(arrList)
+        } else {
+            const arrList = [...stateLocal]
+            const newarrList = [];
+            arrList.forEach((ele,idx)=>{
+                if(idx < 6) {
+                    newarrList.push(ele)
+                }
+                setDisplayArr(newarrList)
+            })
+        }
     },[])
     useEffect(()=>{
         const cards = gsap.utils.toArray(".scrap-slots-container"),
@@ -25,7 +37,6 @@ export default function ScrapPage() {
         const Inner = gsap.utils.toArray(".scrap-inner")
         gsap.set(".slotWrapper", {
             perspective: 900,
-            height: 400,
             transformStyle: "preserve-3d"
         });
 
@@ -63,47 +74,58 @@ export default function ScrapPage() {
             })
         })
     },[displayArr])
+    useEffect(()=>{
+        //로컬 저장 데이터가 6개를 초과하면 more view 버튼 노출
+        if(localstate.length > 6) {
+            setIsBtnOn(true)
+        }
+    },[displayArr])
     return (
         <div>
-            <div className={`is-not-cardlist ${isLocal? '' : 'on'}`}>
-                등록된 카드가 없어요
-            </div>
-            <div className='slotWrapper'>
-            {displayArr.map((ele,idx)=>(
-                <div className='scrap-slots-container' key={`scrap-${idx}`}>
-                    {ele ? (
-                        <div className="scrap-slots">
-                            <div className='scrap-inner'>
-                                <div className='front'>
-                                    <div className='scrap-img-container'>
-                                        <img src={ele.image} alt={ele.name}></img>
-                                        <p className='scrap-index'>NO.{ele.id}</p>
-                                    </div>
-                                    <div className='scrap-text-container'>
-                                        <p className='scrap-name'>{ele.name}</p>
-                                        <p className='scrap-type'>{ele.types.join(',')}</p>
-                                    </div>
-                                </div>
-                                <div className='back'>
-                                    <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="scrap-slots empty-type">
-                            <div className='scrap-inner'>
-                                <div className='front'>
-                                    <p>등록된 카드가 없습니다.</p>
-                                </div>
-                                <div className='back'>
-                                    <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+            <section className='my-collection-section'>
+                <p className='my-collection-title'>나의 수집 목록</p>
+                <div className={`is-not-cardlist ${isLocal? 'on' : ''}`}>
+                    등록된 카드가 없어요
                 </div>
-            ))}
-            </div>
+                <div className='slotWrapper'>
+                {displayArr.map((ele,idx)=>(
+                    <div className='scrap-slots-container' key={`scrap-${idx}`}>
+                        {ele ? (
+                            <div className="scrap-slots">
+                                <div className='scrap-inner'>
+                                    <div className='front'>
+                                        <div className='scrap-img-container'>
+                                            <img src={ele.image} alt={ele.name}></img>
+                                            <p className='scrap-index'>NO.{ele.id}</p>
+                                        </div>
+                                        <div className='scrap-text-container'>
+                                            <p className='scrap-name'>{ele.name}</p>
+                                            <p className='scrap-type'>{ele.types.join(',')}</p>
+                                        </div>
+                                    </div>
+                                    <div className='back'>
+                                        <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="scrap-slots empty-type">
+                                <div className='scrap-inner'>
+                                    <div className='front'>
+                                        <p>등록된 카드가 없습니다.</p>
+                                    </div>
+                                    <div className='back'>
+                                        <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+                </div>
+
+                <button type='button' className={`more-view-btn ${isBtnOn? 'on' : ''}`}>수집한 모든 카드 보기</button>
+            </section>
         </div>
     )
 }
