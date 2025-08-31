@@ -90,10 +90,9 @@ export default function ScrapPage() {
     return (
         <div>
             <section className='my-collection-section'>
-                <p className='my-collection-title'>나의 수집 목록</p>
-                <div className={`is-not-cardlist ${isLocal? 'on' : ''}`}>
-                    등록된 카드가 없어요
-                </div>
+                <p className='my-collection-title'>
+                    {isLocal ? ('카드를 수집해주세요!'):('나의 수집 목록')}
+                </p>
                 <div className='slotWrapper'>
                 {displayArr.map((ele,idx)=>(
                     <div className='scrap-slots-container' key={`scrap-${idx}`}>
@@ -118,7 +117,7 @@ export default function ScrapPage() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="scrap-slots empty-type">
+                            <div className="scrap-slot empty-type">
                                 <div className='scrap-inner'>
                                     <div className='front'>
                                         <p>등록된 카드가 없습니다.</p>

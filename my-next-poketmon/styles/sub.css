@@ -111,12 +111,6 @@
 }
 
 /* scrap */
-.is-not-cardlist {
-    display: none;
-}
-.is-not-cardlist.on {
-    display: block;
-}
 .my-collection-section {
     margin: 70px auto 150px;
 }
@@ -207,7 +201,7 @@
     font-size: 2.4rem;
     text-align: center;
 }
-.scrap-slots.empty-type .front {
+.scrap-slot.empty-type .front {
     display: flex;
     justify-content: center;
     align-items: center;
