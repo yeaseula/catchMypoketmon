@@ -17,7 +17,17 @@ export async function GET(request) {
                 const koreanName = koreaNameObj ? koreaNameObj.name : detailData.name;
 
                 // 3. 타입 추출
-                const types = detailData.types.map((t) => t.type.name);
+                //const types = detailData.types.map((t) => t.type.name);
+
+                const types = await Promise.all(
+                    detailData.types.map(async(a)=>{
+                        const typeRes = await fetch(a.type.url)
+                        const typeData = await typeRes.json();
+                        const koNameObj = typeData.names.find(n => n.language.name === 'ko');
+                        return koNameObj ? koNameObj.name : a.type.name;
+                    })
+                )
+
 
                 // 이미지 URL
                 const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detailData.id}.png`;
