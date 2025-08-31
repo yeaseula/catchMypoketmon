@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 
 export default function ScrapPage() {
@@ -80,6 +81,11 @@ export default function ScrapPage() {
             setIsBtnOn(true)
         }
     },[displayArr])
+
+    const handleMoreCollection = ()=>{
+        //console.log(localstate)
+    }
+
     return (
         <div>
             <section className='my-collection-section'>
@@ -124,7 +130,26 @@ export default function ScrapPage() {
                 ))}
                 </div>
 
-                <button type='button' className={`more-view-btn ${isBtnOn? 'on' : ''}`}>수집한 모든 카드 보기</button>
+                <button type='button' className={`more-view-btn ${isBtnOn? 'on' : ''}`} onClick={handleMoreCollection}>수집한 모든 카드 보기</button>
+
+                <div className="cardslot-container">
+                    {localstate.map((ele,idx)=>(
+                    <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
+                        <div className="card-slot">
+                        <div className="img-box" >
+                            <img src={ele.image} alt={ele.name} />
+                            <div className="monster-index">NO.{ele.id}</div>
+                        </div>
+                        <div className="text-box">
+                            <p className="monster-name">{ele.name}</p>
+                            <div className="types-container">
+                            {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
+                            </div>
+                        </div>
+                        </div>
+                    </Link>
+                    ))}
+                </div>
             </section>
         </div>
     )
