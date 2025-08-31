@@ -31,6 +31,23 @@ header {
     border: 1px solid var(--sub-color);
     background-color: var(--sub-color);
     border-radius: 100%;
+    transition: all 0.2s;
+}
+
+.menu-box li:hover {
+    box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+    animation: bounce 1.7s ease infinite;
+}
+@keyframes bounce {
+    0% {
+        box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+    }
+    50% {
+        box-shadow: 0 3px 16px rgb(21, 55, 111, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+    }
 }
 .menu-box li.search {
     display: flex;
@@ -76,6 +93,7 @@ header {
         background-position: 0% 50%;
     }
 }
+
 
 .main-message-container {
     margin: 40px auto 0;

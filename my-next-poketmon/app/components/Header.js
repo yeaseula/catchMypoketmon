@@ -55,7 +55,7 @@ export default function Header () {
                         ></Image>
                     </button>
                 </li>
-                <li className="my-scrab">
+                <li className="my-scrap">
                     <Link href={`/scrap`}>
                     <button type="button">
                         <Image
