@@ -63,7 +63,7 @@ export default function Home() {
               <div className="text-box">
                 <p className="monster-name">{ele.name}</p>
                 <div className="types-container">
-                  {ele.types.map(n=>(<span className="monster-type">{n}</span>))}
+                  {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
                 </div>
               </div>
             </div>
