@@ -9,6 +9,7 @@ export default function ScrapPage() {
     const [localstate,setLocalstate] = useState([])
     const [isLocal,setIsLocal] = useState(false)
     const [isBtnOn,setIsBtnOn] = useState(false)
+    const [isMoreView,setIsMoreView] = useState(false)
     useEffect(()=>{
         const stateLocal = JSON.parse(localStorage.getItem("scrap") || "[]");
         setLocalstate(stateLocal)
@@ -83,7 +84,7 @@ export default function ScrapPage() {
     },[displayArr])
 
     const handleMoreCollection = ()=>{
-        //console.log(localstate)
+        setIsMoreView(true)
     }
 
     return (
@@ -134,6 +135,8 @@ export default function ScrapPage() {
 
                 <button type='button' className={`more-view-btn ${isBtnOn? 'on' : ''}`} onClick={handleMoreCollection}>수집한 모든 카드 보기</button>
 
+                {isMoreView ? (
+
                 <div className="cardslot-container">
                     {localstate.map((ele,idx)=>(
                     <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
@@ -152,6 +155,7 @@ export default function ScrapPage() {
                     </Link>
                     ))}
                 </div>
+                ):(``)}
             </section>
         </div>
     )
