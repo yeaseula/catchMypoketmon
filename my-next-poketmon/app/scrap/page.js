@@ -20,11 +20,11 @@ export default function ScrapPage() {
         setDisplayArr(arrList)
     },[])
     useEffect(()=>{
-        var cards = gsap.utils.toArray(".scrap-slots-container"),
-            radius = 350; //간격
-
+        const cards = gsap.utils.toArray(".scrap-slots-container"),
+            radius = 340; //간격
+        const Inner = gsap.utils.toArray(".scrap-inner")
         gsap.set(".slotWrapper", {
-            perspective: 1100,
+            perspective: 900,
             height: 400,
             transformStyle: "preserve-3d"
         });
@@ -36,11 +36,32 @@ export default function ScrapPage() {
             });
             gsap.to(element, {
                 duration: 20,
-                rotationY: "-=300",
-                repeat: -1,
-                ease: "none"
+                rotationY: "-=360",
+                ease: "power3.inOut",
+                onComplete(){
+                    this.restart()
+                }
             });
         });
+
+        Inner.forEach((ele,idx)=>{
+            gsap.to(ele,{
+                duration: 20,
+                repeat: -1,
+                ease:"linear",
+                onUpdate(){
+                    const targetParent=this._targets[0].closest('.scrap-slots-container');
+                    // let rotateY = 0;
+                    let rotateY = gsap.getProperty(targetParent, "rotationY") % 360;
+                    if (rotateY < 0) rotateY += 360;
+                    if((rotateY >= 80 && rotateY <=180 ) || (rotateY >= 180 && rotateY <= 285)) {
+                        ele.classList.add("rotate");
+                    } else {
+                        ele.classList.remove("rotate")
+                    }
+                }
+            })
+        })
     },[displayArr])
     return (
         <div>
@@ -52,18 +73,32 @@ export default function ScrapPage() {
                 <div className='scrap-slots-container' key={`scrap-${idx}`}>
                     {ele ? (
                         <div className="scrap-slots">
-                            <div className='scrap-img-container'>
-                                <img src={ele.image} alt={ele.name}></img>
-                                <p className='scrap-index'>NO.{ele.id}</p>
-                            </div>
-                            <div className='scrap-text-container'>
-                                <p className='scrap-name'>{ele.name}</p>
-                                <p className='scrap-type'>{ele.types.join(',')}</p>
+                            <div className='scrap-inner'>
+                                <div className='front'>
+                                    <div className='scrap-img-container'>
+                                        <img src={ele.image} alt={ele.name}></img>
+                                        <p className='scrap-index'>NO.{ele.id}</p>
+                                    </div>
+                                    <div className='scrap-text-container'>
+                                        <p className='scrap-name'>{ele.name}</p>
+                                        <p className='scrap-type'>{ele.types.join(',')}</p>
+                                    </div>
+                                </div>
+                                <div className='back'>
+                                    <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                </div>
                             </div>
                         </div>
                     ) : (
                         <div className="scrap-slots empty-type">
-                            <p>등록된 카드가 없습니다.</p>
+                            <div className='scrap-inner'>
+                                <div className='front'>
+                                    <p>등록된 카드가 없습니다.</p>
+                                </div>
+                                <div className='back'>
+                                    <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
