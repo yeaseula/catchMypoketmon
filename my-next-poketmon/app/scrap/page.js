@@ -97,16 +97,18 @@ export default function ScrapPage() {
                 {displayArr.map((ele,idx)=>(
                     <div className='scrap-slots-container' key={`scrap-${idx}`}>
                         {ele ? (
-                            <div className="scrap-slots">
+                            <div className="card-slot scrap-slot">
                                 <div className='scrap-inner'>
                                     <div className='front'>
-                                        <div className='scrap-img-container'>
+                                        <div className='img-box'>
                                             <img src={ele.image} alt={ele.name}></img>
-                                            <p className='scrap-index'>NO.{ele.id}</p>
+                                            <p className='monster-index'>NO.{ele.id}</p>
                                         </div>
-                                        <div className='scrap-text-container'>
-                                            <p className='scrap-name'>{ele.name}</p>
-                                            <p className='scrap-type'>{ele.types.join(',')}</p>
+                                        <div className='text-box'>
+                                            <p className='monster-name'>{ele.name}</p>
+                                            <div className="types-container">
+                                            {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='back'>
