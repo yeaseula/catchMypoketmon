@@ -4,10 +4,19 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import { gsap } from 'gsap';
 
 export default function Home() {
+  const [firstLoad,setFirstLoad] = useState(false)
   const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState([]);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setFirstLoad(true)
+    },3000)
+    console.log(firstLoad)
+  },[])
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -47,29 +56,49 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll)
   },[])
+
+  useEffect(()=>{
+    const loadingFirstImg = document.querySelector('.loading-first img');
+
+  },[])
+
   return (
-    <section>
-      <div className="main-message-container">
-        <p>나만의 포켓몬 도감을 완성해보세요!</p>
-      </div>
-      <div className="cardslot-container">
-        {pokemons.map((ele,idx)=>(
-          <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
-            <div className="card-slot">
-              <div className="img-box" >
-                <img src={ele.image} alt={ele.name} />
-                <div className="monster-index">NO.{ele.id}</div>
-              </div>
-              <div className="text-box">
-                <p className="monster-name">{ele.name}</p>
-                <div className="types-container">
-                  {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
+
+    <section className="main-list-section">
+      {firstLoad?(
+      <div>
+        <div className="main-message-container">
+          <p>나만의 포켓몬 도감을 완성해보세요!</p>
+        </div>
+        <div className="cardslot-container">
+          {pokemons.map((ele,idx)=>(
+            <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
+              <div className="card-slot">
+                <div className="img-box" >
+                  <img src={ele.image} alt={ele.name} />
+                  <div className="monster-index">NO.{ele.id}</div>
+                </div>
+                <div className="text-box">
+                  <p className="monster-name">{ele.name}</p>
+                  <div className="types-container">
+                    {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
+      ):(
+        <div className="loading-first">
+          <div className="loading-inner">
+              <img src='/images/main-loading.png' alt="로딩"></img>
+              <p>포켓몬 도감 생성중...</p>
+          </div>
+        </div>
+      )}
+
+
     </section>
   );
 }

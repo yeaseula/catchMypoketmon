@@ -3,6 +3,31 @@
     padding: 0 15px;
     margin: 0 auto;
 }
+.loading-first{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: #fff;
+}
+.loading-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.loading-inner p {
+    font-family: 'Paperlozy-EB';
+    font-size: 4rem;
+    margin-top: 10px;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.3; }
+}
 header {
     padding: 30px 0;
     display: flex;
@@ -94,7 +119,9 @@ header {
     }
 }
 
-
+.main-list-section {
+    padding:0 0 120px 0;
+}
 .main-message-container {
     margin: 40px auto 0;
 }
@@ -105,13 +132,13 @@ header {
     text-align: center;
 }
 .loading-state {
-    margin: 30px 0;
+    margin: 30px 0 0 0;
     text-align: center;
     font-size: 2.4rem;
     font-family: 'Paperlozy-EB';
 }
 .cardslot-container {
-    margin: 70px 0 120px 0;
+    margin-top: 70px;
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
