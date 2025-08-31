@@ -62,7 +62,7 @@ export default function Details() {
                 <span className="monster-detail-index">NO.{ele.id}</span>
                 <p className="monster-detail-name">{ele.name}</p>
                 <div className="detail-info">
-                  키 {ele.height}m, 몸무게 {ele.weight}kg, {ele.types.map((n)=>(<span className="detail-type" key={n}>{n}</span>))} 포켓몬이다.<br></br>
+                  키 {ele.height}m, 몸무게 {ele.weight}kg, {ele.types.join(',')} 포켓몬이다.<br></br>
                   필살기는 {ele.moves.join(',')} ! <br></br>
                   특성은 {ele.abilities.join(',')}이다.
                 </div>
