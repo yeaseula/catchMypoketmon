@@ -54,11 +54,6 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll)
   },[])
-
-  useEffect(()=>{
-    const loadingFirstImg = document.querySelector('.loading-first img');
-  },[])
-
   return (
 
     <section className="main-list-section">
