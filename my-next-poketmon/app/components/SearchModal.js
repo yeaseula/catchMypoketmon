@@ -8,7 +8,6 @@ export default function SearchModal({searchTerm,onClose}) {
 
     return(
     <div className="modal-backdrop">
-
         <div className="modal-container">
             <Swiper
                 modules={[Pagination]}
@@ -35,7 +34,6 @@ export default function SearchModal({searchTerm,onClose}) {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
         </div>
     </div>
     )

@@ -24,6 +24,8 @@ export default function Header () {
                 console.log(data)
                 setSearchTerm(data)
                 setModal(true)
+                setOnstate(false);
+                SearchInput.value = ''
             }
         } else {
             setOnstate((prev) => !prev)
