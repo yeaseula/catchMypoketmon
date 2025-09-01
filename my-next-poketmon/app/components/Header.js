@@ -7,10 +7,11 @@ import SearchModal from "./SearchModal";
 export default function Header () {
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
+    const [query,setQuery] = useState(''); //input value 실시간
     const [onModal,setModal] = useState(false);
-    const [searchTerm,setSearchTerm] = useState('');
+    const [searchTerm,setSearchTerm] = useState([]);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if(onstate == true) {
             const SearchInput = document.getElementById('search-pokemon');
             if(SearchInput.value == '') {
@@ -18,6 +19,10 @@ export default function Header () {
                 return
             } else {
                 //api에서 검색합니다..
+                const res = await fetch(`/api/pokemons/search?q=${encodeURIComponent(query)}`);
+                const data = await res.json();
+                console.log(data)
+                setSearchTerm(data)
                 setModal(true)
             }
         } else {
@@ -50,7 +55,7 @@ export default function Header () {
             </h1>
             <nav className="menu-box">
                 <li className={`search ${onstate ? "on":""}`} ref={searchRef}>
-                    <input type="text" name="search-pokemon" id="search-pokemon" placeholder="Search.." onChange={(e)=>setSearchTerm(e.target.value)}></input>
+                    <input type="text" name="search-pokemon" id="search-pokemon" placeholder="Search.." onChange={e=>setQuery(e.target.value)}></input>
                     <button type="button" onClick={handleSearch}>
                         <Image
                             src="/images/search-icon-w.svg"

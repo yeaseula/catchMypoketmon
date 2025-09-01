@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:pokemon": "node scripts/build-pokemon-ko.js"
   },
   "dependencies": {
     "gsap": "^3.13.0",
