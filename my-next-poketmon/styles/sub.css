@@ -247,8 +247,9 @@
     border-radius: 20px;
     box-shadow: 0 4px 20px var(--main-color-dark);
     background-color: #fff;
-    padding: 25px;
+    padding: 25px 25px 60px;
     background-color: var(--main-color);
+    overflow: hidden;
 }
 .modal-container .img-box {
     background-color: #fff;
@@ -297,4 +298,15 @@
 .modal-container ul button:hover,
 .modal-container ul .modal-more-view-btn:hover {
     background-color: #bdbdbd !important;
+}
+.modal-container .swiper {
+    overflow: visible;
+}
+
+.modal-container .swiper-pagination {
+    top: unset;
+    bottom: -40px !important;
+}
+.modal-container .swiper-pagination-bullet {
+    background-color: #fff;
 }

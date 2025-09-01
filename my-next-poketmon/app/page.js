@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
-import { gsap } from 'gsap';
 
 export default function Home() {
   const [firstLoad,setFirstLoad] = useState(false)
