@@ -2,10 +2,13 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Link from 'next/link';
+import SearchModal from "./SearchModal";
 
 export default function Header () {
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
+    const [onModal,setModal] = useState(false);
+    const [searchTerm,setSearchTerm] = useState('');
 
     const handleSearch = () => {
         if(onstate == true) {
@@ -15,6 +18,7 @@ export default function Header () {
                 return
             } else {
                 //api에서 검색합니다..
+                setModal(true)
             }
         } else {
             setOnstate((prev) => !prev)
@@ -33,6 +37,7 @@ export default function Header () {
     }, [])
 
     return (
+        <div>
         <header>
             <h1>
                 <Image
@@ -45,7 +50,7 @@ export default function Header () {
             </h1>
             <nav className="menu-box">
                 <li className={`search ${onstate ? "on":""}`} ref={searchRef}>
-                    <input type="text" name="search-pokemon" id="search-pokemon" placeholder="Search.."></input>
+                    <input type="text" name="search-pokemon" id="search-pokemon" placeholder="Search.." onChange={(e)=>setSearchTerm(e.target.value)}></input>
                     <button type="button" onClick={handleSearch}>
                         <Image
                             src="/images/search-icon-w.svg"
@@ -69,5 +74,7 @@ export default function Header () {
                 </li>
             </nav>
         </header>
+        {onModal && (<SearchModal searchTerm={searchTerm} onClose={() => setModal(false)}></SearchModal>)}
+        </div>
     )
 }

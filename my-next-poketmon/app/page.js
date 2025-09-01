@@ -29,7 +29,6 @@ export default function Home() {
           const res = await fetch(`/api/pokemons?page=${page}`);
           const data = await res.json();
           p.remove();
-          console.log(page)
           //console.log(data) 결과 순서가 뒤죽박죽으로 나오는걸 확인
           setPokemons(prev => [...prev, ...data])
       } catch (err) {
@@ -59,7 +58,6 @@ export default function Home() {
 
   useEffect(()=>{
     const loadingFirstImg = document.querySelector('.loading-first img');
-
   },[])
 
   return (
@@ -97,8 +95,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
-
     </section>
   );
 }

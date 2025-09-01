@@ -227,3 +227,18 @@
 .more-view-btn.on {
     display: block;
 }
+
+/* modal */
+.modal-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px var(--main-color-dark);
+    background-color: #fff;
+    padding: 25px;
+}
