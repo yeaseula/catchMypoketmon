@@ -22,7 +22,7 @@ export default function Home() {
     const section = document.querySelector('section')
     const p = document.createElement('p')
     p.classList.add('loading-state')
-    p.textContent = '로딩..'
+    p.textContent = '로딩중..'
     section.append(p)
       try {
           const res = await fetch(`/api/pokemons?page=${page}`);

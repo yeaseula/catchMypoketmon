@@ -2,22 +2,23 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export default function Details() {
     const {id} = useParams();
+    const [firstLoad,setFirstLoad] = useState(false)
     const [poketmons,setPoketmons] = useState([]);
     const [isSaved,setIsSaved] = useState(false);
     const [scrapList,setScrapList] = useState([]);
-
+    const router = useRouter();
     useEffect(()=>{
-        //console.log(`페이지로딩 ${isSaved}`)
-
         async function setData () {
             const res = await fetch(`/api/pokemons/${id}`);
             const data = await res.json();
             setPoketmons([data])
             const scraptarget = JSON.parse(localStorage.getItem("scrap") || "[]")
             setIsSaved(scraptarget.some((ele)=>(ele.id === data.id)))
+            setFirstLoad(true)
         }
         setData();
     },[id])
@@ -45,38 +46,47 @@ export default function Details() {
     }
     return (
         <div>
-        {poketmons.map((ele)=>(
-            <section className="detail-container" key={ele.id}>
-              <div className="detail-card-img" >
-                <div className="img-container">
-                  <img src={ele.image} alt={ele.name} />
-                </div>
-                <Image src="/images/ball.png"
-                alt="흔들리는 몬스터볼"
-                width={135}
-                height={135}
-                className="monster-ball"
-                ></Image>
-              </div>
-              <div className="detail-text">
-                <span className="monster-detail-index">NO.{ele.id}</span>
-                <p className="monster-detail-name">{ele.name}</p>
-                <div className="detail-info">
-                  키 {ele.height}m, 몸무게 {ele.weight}kg, {ele.types.join(',')} 포켓몬이다.<br></br>
-                  필살기는 {ele.moves.join(',')} ! <br></br>
-                  특성은 {ele.abilities.join(',')}이다.
-                </div>
-                <div className="detail-btn-container">
-                  <button type="button" className={`btn-style scrap-button ${isSaved ? "off" : ""}`} onClick={handleScrap} disabled={isSaved}>
-                    {isSaved ? `${ele.name} 넌 내꺼야` : "카드 찜하기"}
-                  </button>
-                  <button type="button" className="btn-style back-btn">다른 포켓몬 보러가기</button>
-                </div>
-              </div>
-            </section>
-
-        ))}
-
+          {firstLoad?(
+            <div>
+              {poketmons.map((ele)=>(
+                  <section className="detail-container" key={ele.id}>
+                    <div className="detail-card-img" >
+                      <div className="img-container">
+                        <img src={ele.image} alt={ele.name} />
+                      </div>
+                      <Image src="/images/ball.png"
+                      alt="흔들리는 몬스터볼"
+                      width={135}
+                      height={135}
+                      className="monster-ball"
+                      ></Image>
+                    </div>
+                    <div className="detail-text">
+                      <span className="monster-detail-index">NO.{ele.id}</span>
+                      <p className="monster-detail-name">{ele.name}</p>
+                      <div className="detail-info">
+                        키 {ele.height}m, 몸무게 {ele.weight}kg, {ele.types.join(',')} 포켓몬이다.<br></br>
+                        필살기는 {ele.moves.join(',')} ! <br></br>
+                        특성은 {ele.abilities.join(',')}이다.
+                      </div>
+                      <div className="detail-btn-container">
+                        <button type="button" className={`btn-style scrap-button ${isSaved ? "off" : ""}`} onClick={handleScrap} disabled={isSaved}>
+                          {isSaved ? `${ele.name} 넌 내꺼야` : "카드 찜하기"}
+                        </button>
+                        <button type="button" className="btn-style back-btn" onClick={() => router.back()}>다른 포켓몬 보러가기</button>
+                      </div>
+                    </div>
+                  </section>
+              ))}
+            </div>
+          ):(
+          <div className="loading-first">
+            <div className="loading-inner">
+                <img src='/images/main-loading.png' alt="로딩"></img>
+                <p>포켓몬 도감 생성중...</p>
+            </div>
+          </div>
+          )}
         </div>
     )
 }
