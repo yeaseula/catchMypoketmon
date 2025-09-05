@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,       // 앱 라우터 사용
+    appDir: true,
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
