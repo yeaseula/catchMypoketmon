@@ -1,0 +1,305 @@
+/* [project]/styles/main.css [app-client] (css) */
+#all-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.loading-first {
+  z-index: 10;
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.loading-inner {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loading-inner p {
+  margin-top: 10px;
+  font-family: Paperlozy-EB;
+  font-size: 4rem;
+  animation: 1s infinite blink;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: .3;
+  }
+}
+
+header {
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  display: flex;
+}
+
+.menu-box {
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.menu-box button {
+  background-color: var(--main-color);
+  cursor: pointer;
+  width: 43px;
+  height: 43px;
+  transition: all .4;
+  border: none;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.menu-box li {
+  border: 1px solid var(--sub-color);
+  background-color: var(--sub-color);
+  border-radius: 100%;
+  padding: 6px;
+  transition: all .2s;
+}
+
+.menu-box li:hover {
+  animation: 1.7s infinite bounce;
+  box-shadow: 0 0 rgba(21, 55, 111, .5);
+}
+
+@keyframes bounce {
+  0% {
+    box-shadow: 0 0 rgba(21, 55, 111, .5);
+  }
+
+  50% {
+    box-shadow: 0 3px 16px rgba(21, 55, 111, .5);
+  }
+
+  100% {
+    box-shadow: 0 0 rgba(21, 55, 111, .5);
+  }
+}
+
+.menu-box li.search {
+  transition: all .4s;
+  display: flex;
+}
+
+.menu-box li.search:focus-within {
+  box-shadow: 0 4px 16px rgba(21, 55, 111, .5);
+}
+
+.menu-box #search-pokemon {
+  border: unset;
+  background-color: var(--sub-color);
+  border-radius: 500px;
+  width: 0;
+  margin-right: 0;
+  transition: all .4s;
+  display: inline-block;
+}
+
+.menu-box #search-pokemon:focus {
+  border: unset;
+  outline: unset;
+}
+
+.menu-box li.search.on {
+  border-radius: 500px;
+}
+
+.menu-box li.search.on #search-pokemon {
+  width: 300px;
+  padding-left: 12px;
+}
+
+.menu-box li.search.on button {
+  background: linear-gradient(270deg, var(--main-color-dark), var(--main-color));
+  background-size: 200% 200%;
+  animation: 1.3s infinite gradientBack;
+}
+
+@keyframes gradientBack {
+  0% {
+    background-position: 0%;
+  }
+
+  50% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: 0%;
+  }
+}
+
+.main-list-section {
+  padding: 0 0 120px;
+}
+
+.main-message-container {
+  margin: 40px auto 0;
+}
+
+.main-message-container p {
+  color: var(--main-color-dark);
+  text-align: center;
+  font-family: Paperlozy-EB;
+  font-size: 4rem;
+}
+
+.loading-state {
+  text-align: center;
+  margin: 30px 0 0;
+  font-family: Paperlozy-EB;
+  font-size: 2.4rem;
+}
+
+.cardslot-container {
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 70px;
+  display: flex;
+}
+
+.cardslot-container > a {
+  flex-basis: calc(25% - 30px);
+}
+
+.card-slot {
+  background-color: var(--main-color);
+  border-radius: 15px;
+  padding: 15px 15px 20px;
+}
+
+.card-slot:hover {
+  background: linear-gradient(235deg, #000, var(--main-color));
+  background-size: 200% 200%;
+  animation: 2s linear infinite gradientBack;
+}
+
+.card-slot .img-box {
+  aspect-ratio: 236 / 180;
+  outline: 3px solid var(--sub-color);
+  text-align: center;
+  background-color: #fff;
+  border-radius: 15px;
+  position: relative;
+}
+
+.card-slot .monster-index {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--main-color-dark);
+  border-radius: 5px;
+  padding: 3px 7px;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 10px;
+  left: 7px;
+}
+
+.card-slot img {
+  max-width: 70%;
+}
+
+.card-slot .text-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card-slot .monster-name {
+  color: #fff;
+  font-size: 2.4rem;
+}
+
+.card-slot .types-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 20px auto 0;
+  display: flex;
+}
+
+.card-slot .monster-type {
+  background-color: var(--sub-color);
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  .loading-inner img {
+    width: 80%;
+  }
+
+  .loading-inner p {
+    font-size: 2.6rem;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+  }
+
+  .menu-box li.search.on #search-pokemon {
+    width: 210px;
+  }
+
+  .main-message-container {
+    margin: 20px 0;
+  }
+
+  .main-message-container p {
+    font-size: min(2.6rem, 6vw);
+  }
+
+  .cardslot-container {
+    gap: 15px;
+    margin-top: 40px;
+  }
+
+  .cardslot-container > a {
+    flex-basis: calc(50% - 7.5px);
+  }
+
+  .card-slot .monster-index {
+    font-size: 1rem;
+    top: 5px;
+    left: 5px;
+  }
+
+  .card-slot .text-box {
+    margin-top: 10px;
+  }
+
+  .card-slot .monster-name {
+    font-size: 1.8rem;
+  }
+
+  .card-slot .types-container {
+    margin-top: 10px;
+  }
+
+  .card-slot .monster-type {
+    padding: 2px 8px;
+    font-size: 1.2rem;
+  }
+}
+
+/*# sourceMappingURL=styles_main_css_bad6b30c._.single.css.map*/

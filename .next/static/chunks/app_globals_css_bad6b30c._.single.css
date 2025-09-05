@@ -1,0 +1,93 @@
+/* [project]/app/globals.css [app-client] (css) */
+:root {
+  --background: #fff;
+  --foreground: #171717;
+  --main-color: #3666ac;
+  --main-color-dark: #15376f;
+  --sub-color: #ffcc03;
+  --point-color: #ec1d27;
+}
+
+@font-face {
+  font-family: Paperlozy-R;
+  src: url("/fonts/Paperlogy-4Regular.woff2") format("woff2"), url("/fonts/Paperlogy-4Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Paperlozy-B;
+  src: url("/fonts/Paperlogy-7Bold.woff2") format("woff2"), url("/fonts/Paperlogy-7Bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Paperlozy-EB;
+  src: url("/fonts/Paperlogy-8ExtraBold.woff2") format("woff2"), url("/fonts/Paperlogy-8ExtraBold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  font-size: 10px;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Paperlozy-R, sans-serif;
+  font-size: 1.6rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+ul, li, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: Paperlozy-EB;
+}
+
+img {
+  vertical-align: middle;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --lightningcss-light: ;
+    --lightningcss-dark: initial;
+    color-scheme: dark;
+  }
+}
+
+/*# sourceMappingURL=app_globals_css_bad6b30c._.single.css.map*/
