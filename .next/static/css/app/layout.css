@@ -550,7 +550,6 @@ body {
   font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);
-  /* font-family: 'Paperlozy-R', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -568,6 +567,7 @@ a {
 }
 button {
   cursor: pointer;
+  font-family: inherit;
   font-weight: 800;
 }
 img { vertical-align: middle; }
@@ -891,7 +891,7 @@ header {
 .detail-container .monster-detail-name {
     margin-top: 25px;
     font-size: 3.2rem;
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
 }
 .detail-container .detail-info {
     margin-top: 50px;
@@ -953,7 +953,7 @@ header {
     margin-bottom: 70px;
     text-align: center;
     font-size: 3.6rem;
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
 }
 .slotWrapper {
     width: 1000px;
@@ -1117,7 +1117,7 @@ header {
 }
 .modal-container ul button,
 .modal-container ul .modal-more-view-btn {
-    font-family: 'Paperlozy-B';
+    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -27,7 +27,6 @@ body {
   font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);
-  /* font-family: 'Paperlozy-R', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -45,6 +44,7 @@ a {
 }
 button {
   cursor: pointer;
+  font-family: inherit;
   font-weight: 800;
 }
 img { vertical-align: middle; }
