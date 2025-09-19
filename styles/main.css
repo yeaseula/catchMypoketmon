@@ -158,6 +158,9 @@ header {
 }
 
 .card-slot .img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     aspect-ratio: 236 / 180;
     border-radius: 15px;
@@ -176,7 +179,7 @@ header {
     padding: 3px 7px;
     font-size: 1.3rem;
 }
-.card-slot img { max-width: 70%; }
+.card-slot img { max-width: 70%; aspect-ratio: 1; height: auto;}
 
 .card-slot .text-box {
     margin-top: 20px;

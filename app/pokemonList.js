@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
-
+import CardSlot from "./components/CardSlot";
 
 export default function PokemonList({initialData}) {
   const [page,setPage] = useState(0);
@@ -54,22 +54,7 @@ export default function PokemonList({initialData}) {
           <p>나만의 포켓몬 도감을 완성해보세요!</p>
         </div>
         <div className="cardslot-container">
-          {pokemons.map((ele,idx)=>(
-            <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
-              <div className="card-slot">
-                <div className="img-box" >
-                  <img src={ele.image} alt={ele.name} loading="lazy"/>
-                  <div className="monster-index">NO.{ele.id}</div>
-                </div>
-                <div className="text-box">
-                  <p className="monster-name">{ele.name}</p>
-                  <div className="types-container">
-                    {ele.types.map(n=>(<span className="monster-type" key={n}>{n}</span>))}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+          <CardSlot pokemons={pokemons}/>
         </div>
       </div>
     </section>
