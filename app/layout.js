@@ -11,7 +11,9 @@ export const metadata = {
   icons: {
     icon: [
         { url: "/images/favicon.png", type: "image/png" },
-    ]
+    ],
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
   },
   openGraph: {
     title: "Catch My Pokemon!",
