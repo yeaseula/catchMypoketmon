@@ -421,6 +421,35 @@ button.swiper-pagination-bullet {
   display: none;
 }
 
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[3].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[3].use[2]!./node_modules/next/font/local/target.css?{"path":"app\\layout.js","import":"","arguments":[{"src":[{"path":"../public/fonts/Paperlogy-4Regular.woff2","weight":"400","style":"normal"},{"path":"../public/fonts/Paperlogy-7Bold.woff2","weight":"700","style":"normal"},{"path":"../public/fonts/Paperlogy-8ExtraBold.woff2","weight":"800","style":"normal"}],"display":"swap","fallback":["sans-serif"]}],"variableName":"myFont"} ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+font-family: 'myFont';
+src: url(/_next/static/media/05369e104b616fd0-s.p.woff2) format('woff2');
+font-display: swap;
+font-weight: 400;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'myFont';
+src: url(/_next/static/media/3d174cd4ff1b2c39-s.p.woff2) format('woff2');
+font-display: swap;
+font-weight: 700;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'myFont';
+src: url(/_next/static/media/01bc07d6ae49bff9-s.p.woff2) format('woff2');
+font-display: swap;
+font-weight: 800;
+font-style: normal;
+}@font-face {font-family: 'myFont Fallback';src: local("Arial");ascent-override: 85.65%;descent-override: 17.52%;line-gap-override: 0.00%;size-adjust: 114.16%
+}.__className_23d77d {font-family: 'myFont', 'myFont Fallback', sans-serif
+}
+
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.js","import":"Geist","arguments":[{"variable":"--font-geist-sans","subsets":["latin"]}],"variableName":"geistSans"} ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -501,31 +530,6 @@ button.swiper-pagination-bullet {
   --point-color: #EC1D27;
 }
 
-@font-face {
-  font-family: 'Paperlozy-R';
-  src: url('/fonts/Paperlogy-4Regular.woff2') format('woff2'),
-    url('/fonts/Paperlogy-4Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-  font-family: 'Paperlozy-B';
-  src: url('/fonts/Paperlogy-7Bold.woff2') format('woff2'),
-    url('/fonts/Paperlogy-7Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Paperlozy-EB';
-  src: url('/fonts/Paperlogy-8ExtraBold.woff2') format('woff2'),
-    url('/fonts/Paperlogy-8ExtraBold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -546,7 +550,7 @@ body {
   font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Paperlozy-R', sans-serif;
+  /* font-family: 'Paperlozy-R', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -564,7 +568,7 @@ a {
 }
 button {
   cursor: pointer;
-  font-family: 'Paperlozy-EB';
+  font-weight: 800;
 }
 img { vertical-align: middle; }
 @media (prefers-color-scheme: dark) {
@@ -597,7 +601,7 @@ img { vertical-align: middle; }
     text-align: center;
 }
 .loading-inner p {
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
     font-size: 4rem;
     margin-top: 10px;
     animation: blink 1s infinite;
@@ -704,7 +708,7 @@ header {
     margin: 40px auto 0;
 }
 .main-message-container p {
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
     font-size: 4rem;
     color: var(--main-color-dark);
     text-align: center;
@@ -713,7 +717,7 @@ header {
     margin: 30px 0 0 0;
     text-align: center;
     font-size: 2.4rem;
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
 }
 .cardslot-container {
     margin-top: 70px;

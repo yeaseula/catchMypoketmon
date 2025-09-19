@@ -1,8 +1,19 @@
+import LocalFont from 'next/font/local'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../styles/main.css"
 import "../styles/sub.css"
 import Header from "./components/Header.js";
+
+const myFont = LocalFont({
+  src : [
+    {path : '../public/fonts/Paperlogy-4Regular.woff2', weight : '400', style : 'normal'},
+    {path : '../public/fonts/Paperlogy-7Bold.woff2', weight : '700', style : 'normal'},
+    {path : '../public/fonts/Paperlogy-8ExtraBold.woff2', weight : '800', style : 'normal'},
+  ],
+  display : 'swap',
+  fallback : ['sans-serif']
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={`${myFont.className} ${geistSans.variable} ${geistMono.variable}`}>
         <div id="all-container">
           <Header />
           <main>

@@ -19,7 +19,7 @@
     text-align: center;
 }
 .loading-inner p {
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
     font-size: 4rem;
     margin-top: 10px;
     animation: blink 1s infinite;
@@ -126,7 +126,7 @@ header {
     margin: 40px auto 0;
 }
 .main-message-container p {
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
     font-size: 4rem;
     color: var(--main-color-dark);
     text-align: center;
@@ -135,7 +135,7 @@ header {
     margin: 30px 0 0 0;
     text-align: center;
     font-size: 2.4rem;
-    font-family: 'Paperlozy-EB';
+    font-weight: 800;
 }
 .cardslot-container {
     margin-top: 70px;

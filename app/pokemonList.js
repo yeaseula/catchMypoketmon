@@ -58,7 +58,7 @@ export default function PokemonList({initialData}) {
             <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
               <div className="card-slot">
                 <div className="img-box" >
-                  <img src={ele.image} alt={ele.name} />
+                  <img src={ele.image} alt={ele.name} loading="lazy"/>
                   <div className="monster-index">NO.{ele.id}</div>
                 </div>
                 <div className="text-box">

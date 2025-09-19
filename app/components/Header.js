@@ -5,6 +5,7 @@ import Link from 'next/link';
 import SearchModal from "./SearchModal";
 
 export default function Header () {
+    const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
     const [query,setQuery] = useState(''); //input value 실시간
@@ -47,13 +48,15 @@ export default function Header () {
         <div>
         <header>
             <h1>
-                <Image
-                    src="/images/logo-img.svg"
-                    alt="로고"
-                    width={265}
-                    height={35}
-                    priority
-                ></Image>
+                <Link href={PAGE_ADDRESS}>
+                    <Image
+                        src="/images/logo-img.svg"
+                        alt="로고"
+                        width={265}
+                        height={35}
+                        priority
+                    ></Image>
+                </Link>
             </h1>
             <nav className="menu-box">
                 <li className={`search ${onstate ? "on":""}`} ref={searchRef}>

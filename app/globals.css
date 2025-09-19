@@ -7,31 +7,6 @@
   --point-color: #EC1D27;
 }
 
-@font-face {
-  font-family: 'Paperlozy-R';
-  src: url('/fonts/Paperlogy-4Regular.woff2') format('woff2'),
-    url('/fonts/Paperlogy-4Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-  font-family: 'Paperlozy-B';
-  src: url('/fonts/Paperlogy-7Bold.woff2') format('woff2'),
-    url('/fonts/Paperlogy-7Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Paperlozy-EB';
-  src: url('/fonts/Paperlogy-8ExtraBold.woff2') format('woff2'),
-    url('/fonts/Paperlogy-8ExtraBold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -52,7 +27,7 @@ body {
   font-size: 1.6rem;
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Paperlozy-R', sans-serif;
+  /* font-family: 'Paperlozy-R', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -70,7 +45,7 @@ a {
 }
 button {
   cursor: pointer;
-  font-family: 'Paperlozy-EB';
+  font-weight: 800;
 }
 img { vertical-align: middle; }
 @media (prefers-color-scheme: dark) {
