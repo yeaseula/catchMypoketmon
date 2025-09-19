@@ -1,5 +1,5 @@
 {
-  "/api/pokemons/route": "app/api/pokemons/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pokemons/[id]/page": "app/pokemons/[id]/page.js",
+  "/scrap/page": "app/scrap/page.js",
   "/page": "app/page.js"
 }

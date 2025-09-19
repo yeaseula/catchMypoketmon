@@ -144,7 +144,7 @@ header {
     flex-wrap: wrap;
 }
 .cardslot-container > a {
-    flex-basis: calc(25% - 30px);
+    flex-basis: calc(25% - 23px);
 }
 .card-slot {
     border-radius: 15px;
