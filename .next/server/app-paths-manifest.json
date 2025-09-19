@@ -1,5 +1,7 @@
 {
+  "/api/pokemons/[id]/route": "app/api/pokemons/[id]/route.js",
+  "/api/pokemons/route": "app/api/pokemons/route.js",
   "/pokemons/[id]/page": "app/pokemons/[id]/page.js",
-  "/scrap/page": "app/scrap/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/scrap/page": "app/scrap/page.js"
 }
