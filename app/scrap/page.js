@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
@@ -128,7 +128,13 @@ export default function ScrapPage() {
                                         </div>
                                     </div>
                                     <div className='back'>
-                                        <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                        <Image src={'/images/card-slot-back.png'}
+                                            alt={'카드 슬롯 뒷면'}
+                                            width={330}
+                                            height={440}
+                                            className='card-slot-back'
+                                        >
+                                        </Image>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +145,13 @@ export default function ScrapPage() {
                                         <p>등록된 카드가 없습니다.</p>
                                     </div>
                                     <div className='back'>
-                                        <img src='/images/card-slot-back.png' alt='카드 슬롯 뒷면' className='card-slot-back'></img>
+                                        <Image src={'/images/card-slot-back.png'}
+                                            alt={'카드 슬롯 뒷면'}
+                                            width={330}
+                                            height={440}
+                                            className='card-slot-back'
+                                        >
+                                        </Image>
                                     </div>
                                 </div>
                             </div>

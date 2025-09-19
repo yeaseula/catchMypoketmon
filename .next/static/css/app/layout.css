@@ -975,6 +975,7 @@ header {
     height: 100%;
     background-color: var(--main-color);
     perspective: 1000px;
+    padding: 0;
 }
 .scrap-slot:hover {
     background: var(--main-color);
@@ -1006,6 +1007,7 @@ header {
     transform: rotateY(180deg);
 }
 .back img {
+    max-width: unset;
     width: 100%;
     height: 100%;
 }
@@ -1226,8 +1228,17 @@ header {
         border-radius: 15px;
         overflow: hidden;
     }
+    .scrap-slot {
+        padding: 15px 15px 20px;
+    }
     .front {
         padding: 0;
+    }
+    .back {
+        width: calc(100% + 30px);
+        height: calc(100% + 35px);
+        top: -15px;
+        left: -15px;
     }
     .scrap-slot.empty-type {
         font-size: 1.8rem;
