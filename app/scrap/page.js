@@ -12,6 +12,7 @@ export default function ScrapPage() {
     const [isBtnOn,setIsBtnOn] = useState(false)
     const [isMoreView,setIsMoreView] = useState(false)
     const [radius,setRadius] = useState(340)
+    const [loading,setLoading] = useState(true)
     useEffect(()=>{
         const stateLocal = JSON.parse(localStorage.getItem("scrap") || "[]");
         setLocalstate(stateLocal)
@@ -24,6 +25,7 @@ export default function ScrapPage() {
             const arrList = [...stateLocal];
             while (arrList.length < minSlots) arrList.push(null);
             setDisplayArr(arrList)
+            setLoading(false)
         } else {
             const arrList = [...stateLocal]
             const newarrList = [];
@@ -33,6 +35,7 @@ export default function ScrapPage() {
                 }
                 setDisplayArr(newarrList)
             })
+            setLoading(false)
         }
     },[])
 
@@ -111,6 +114,17 @@ export default function ScrapPage() {
                     {isLocal ? ('카드를 수집해주세요!'):('나의 수집 목록')}
                 </p>
                 <div className='slotWrapper'>
+                    {loading &&
+                    <div className='skeleton-scrap-img'>
+                        <Image src="/images/ball.png"
+                        alt="흔들리는 몬스터볼"
+                        width={150}
+                        height={150}
+                        className="monster-ball"
+                        ></Image>
+                        <p>오늘의 포켓몬은 뭘까요?</p>
+                    </div>
+                    }
                 {displayArr.map((ele,idx)=>(
                     <div className='scrap-slots-container' key={`scrap-${idx}`}>
                         {ele ? (

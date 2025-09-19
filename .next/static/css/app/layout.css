@@ -762,7 +762,23 @@ header {
     align-items: center;
     justify-content: center;
 }
+.skeleton-scrap-img {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 .skeleton-img > .monster-ball { position: unset; }
+.skeleton-scrap-img > .monster-ball { position: unset; }
+.skeleton-scrap-img > p {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--sub-color);
+    text-shadow: -2px -2px 0 var(--main-color-dark), 2px -2px 0 var(--main-color-dark), -2px  2px 0 var(--main-color-dark), 2px  2px 0 var(--main-color-dark);
+    letter-spacing: 1.5px;
+}
 .card-slot .monster-index {
     position: absolute;
     top: 10px;

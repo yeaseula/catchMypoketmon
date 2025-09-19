@@ -1,20 +1,10 @@
 {
   "pages": {
-    "/api/pokemons/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/pokemons/route.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
-    ],
-    "/pokemons/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pokemons/[id]/page.js"
     ],
     "/scrap/page": [
       "static/chunks/webpack.js",
