@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
-import CardSlot from "./components/CardSlot";
+import CardSlot from "./CardSlot";
 
 export default function PokemonList({initialData}) {
   const [page,setPage] = useState(0);

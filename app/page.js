@@ -1,5 +1,5 @@
 // app/page.js (Server Component)
-import PokemonList from './pokemonList.js';
+import PokemonList from './components/pokemonList.js';
 
 export default async function Home() {
   const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
