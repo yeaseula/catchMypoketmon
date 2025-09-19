@@ -750,6 +750,19 @@ header {
     background-color: #fff;
     text-align: center;
 }
+.skeleton-img {
+    width: 93%;
+    height: 90%;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.skeleton-img > .monster-ball { position: unset; }
 .card-slot .monster-index {
     position: absolute;
     top: 10px;

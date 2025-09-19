@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import Image from "next/image";
+import CardImg from './CardImg';
 
 function CardSlot({pokemons}) {
     return (
@@ -9,11 +10,7 @@ function CardSlot({pokemons}) {
             <Link href={`/pokemons/${ele.id}`} key={`${ele.id}-${idx}`}>
                 <div className="card-slot">
                     <div className="img-box" >
-                        <Image src={ele.image}
-                            alt={`${ele.name} 카드`}
-                            width={167}
-                            height={167}
-                        ></Image>
+                        <CardImg src={ele.image} alt={`${ele.name} 카드`}/>
                         <div className="monster-index">NO.{ele.id}</div>
                     </div>
                     <div className="text-box">
