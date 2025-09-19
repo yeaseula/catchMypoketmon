@@ -8,30 +8,46 @@ export default function Header () {
     const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
-    const [query,setQuery] = useState(''); //input value 실시간
+    const [searchValue,setSearchValue] = useState(''); //input value 실시간
     const [onModal,setModal] = useState(false);
     const [searchTerm,setSearchTerm] = useState([]);
 
     const handleSearch = async () => {
         if(onstate == true) {
+            searchAction(searchValue)
+        } else {
+            setOnstate((prev) => !prev)
+        }
+    }
+
+    const handleKeyDownSearch = async (e) => {
+        if(e.key === 'Enter') {
+            searchAction(searchValue)
+        }
+    }
+
+    function searchAction(searchValue){
+        const searchTarget = searchValue
+        const SearchPokemon = async () => {
             const SearchInput = document.getElementById('search-pokemon');
             if(SearchInput.value == '') {
                 alert('검색어를 입력해주세요!')
                 return
             } else {
+                if(SearchInput.value.length < 2) {
+                    alert('2글자 이상 입력해주세요!')
+                    return
+                }
                 //api에서 검색합니다..
-                const res = await fetch(`/api/pokemons/search?q=${encodeURIComponent(query)}`);
+                const res = await fetch(`/api/pokemons/search?q=${encodeURIComponent(searchTarget)}`);
                 const data = await res.json();
-                console.log(data)
                 setSearchTerm(data)
                 setModal(true)
                 setOnstate(false);
                 SearchInput.value = ''
             }
-        } else {
-            setOnstate((prev) => !prev)
         }
-        //li 밖을 클릭하면 토글이 닫혀야합니다..
+        return SearchPokemon()
     }
 
     useEffect(()=>{
@@ -60,7 +76,13 @@ export default function Header () {
             </h1>
             <nav className="menu-box">
                 <li className={`search ${onstate ? "on":""}`} ref={searchRef}>
-                    <input type="text" name="search-pokemon" id="search-pokemon" placeholder="Search.." onChange={e=>setQuery(e.target.value)}></input>
+                    <input
+                    type="text"
+                    name="search-pokemon"
+                    id="search-pokemon"
+                    placeholder="Search.."
+                    onKeyDown={handleKeyDownSearch}
+                    onChange={e=>setSearchValue(e.target.value)} />
                     <button type="button" onClick={handleSearch}>
                         <Image
                             src="/images/search-icon-w.svg"

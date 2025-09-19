@@ -1145,6 +1145,13 @@ header {
 .modal-container .swiper-pagination-bullet {
     background-color: #fff;
 }
+.modal-container .no-result-notice {
+    padding-top: 30px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+}
 @media(max-width:1249px) {
     .monster-ball {
         left: -16px;
