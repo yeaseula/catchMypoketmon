@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import styles from "../page.module.css"
-import { useEffect, useState } from "react";
-import Link from 'next/link';
+import { useEffect, useState, useRef, useCallback } from "react";
 import CardSlot from "./CardSlot";
 
 export default function PokemonList({initialData}) {
   const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState(initialData);
+  const [lastCard,setLastCard] = useState(null)
+  const observer = useRef(null)
 
   useEffect(() => {
     if(page == 0) return;
@@ -31,22 +32,26 @@ export default function PokemonList({initialData}) {
     fetchPokemonData();
   }, [page]);
 
-  let throttleTimer = null;
+  // 마지막 슬롯 콜백 ref
+  const lastCardRef = useCallback(node => {
+    if (!node) return;
 
-  useEffect(()=>{
-    const handleScroll = () => {
-      if(throttleTimer || document.querySelector('.loading-state')) return;
-      throttleTimer = setTimeout(()=>{
-        if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-          setPage(prev => prev + 1);
+    // 이전 observer cleanup
+    if (observer.current) observer.current.disconnect();
+
+    // 새 observer 등록
+    observer.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setPage(prev => prev + 1); // 다음 카드 불러오기
         }
-        throttleTimer = null
-      },1300)
-      //console.log(`innerHeight: ${window.innerHeight}, scrollY: ${window.scrollY}, document: ${document.body.offsetHeight}`)
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll)
-  },[])
+      },
+      { threshold: 1 }
+    );
+
+    observer.current.observe(node);
+  }, []);
+
   return (
     <section className="main-list-section">
       <div>
@@ -54,7 +59,7 @@ export default function PokemonList({initialData}) {
           <p>나만의 포켓몬 도감을 완성해보세요!</p>
         </div>
         <div className="cardslot-container">
-          <CardSlot pokemons={pokemons}/>
+          <CardSlot pokemons={pokemons} lastCardRef={lastCardRef}/>
         </div>
       </div>
     </section>

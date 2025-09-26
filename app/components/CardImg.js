@@ -21,7 +21,7 @@ function CardImg({src, alt}) {
                 alt={alt}
                 width={167}
                 height={167}
-                onLoadingComplete={()=>setLoading(false)}
+                onLoad={()=>setLoading(false)}
             ></Image>
         </>
     )
