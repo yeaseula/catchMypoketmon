@@ -5,16 +5,18 @@ import Link from 'next/link';
 import SearchModal from "./SearchModal";
 
 export default function Header () {
+
     const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
+    const inputRef = useRef(null)
     const [searchValue,setSearchValue] = useState(''); //input value 실시간
     const [onModal,setModal] = useState(false);
     const [searchTerm,setSearchTerm] = useState([]);
 
     const handleSearch = async () => {
         if(onstate == true) {
-            searchAction(searchValue)
+            searchAction(inputRef.current)
         } else {
             setOnstate((prev) => !prev)
         }
@@ -22,12 +24,12 @@ export default function Header () {
 
     const handleKeyDownSearch = async (e) => {
         if(e.key === 'Enter') {
-            searchAction(searchValue)
+            searchAction(inputRef.current)
         }
     }
 
-    function searchAction(searchValue){
-        const searchTarget = searchValue
+    function searchAction(inputRef){
+        const searchTarget = inputRef
         const SearchPokemon = async () => {
             const SearchInput = document.getElementById('search-pokemon');
             if(SearchInput.value == '') {
@@ -82,7 +84,7 @@ export default function Header () {
                     id="search-pokemon"
                     placeholder="Search.."
                     onKeyDown={handleKeyDownSearch}
-                    onChange={e=>setSearchValue(e.target.value)} />
+                    onChange={e=>inputRef.current = e.target.value} />
                     <button type="button" onClick={handleSearch}>
                         <Image
                             src="/images/search-icon-w.svg"

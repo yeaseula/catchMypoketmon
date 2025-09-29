@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import CardImg from './CardImg';
-import { useRef } from 'react';
+import styled from 'styled-components';
 
 function CardSlot({pokemons, lastCardRef}) {
 
@@ -9,7 +9,7 @@ function CardSlot({pokemons, lastCardRef}) {
         <>
         {pokemons.map((ele,idx)=>(
             <Link href={`/pokemons/${ele.id}`} key={`${ele.name}-${idx}`}>
-                <div className={`card-slot`} ref={idx === pokemons.length - 1 ? lastCardRef : null}>
+                <div className={`card-slot`} ref={lastCardRef && idx === pokemons.length - 1 ? lastCardRef : null}>
                     <div className="img-box">
                         <CardImg src={ele.image} alt={`${ele.name} 카드`}/>
                         <div className="monster-index">NO.{ele.id}</div>

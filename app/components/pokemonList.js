@@ -8,9 +8,7 @@ import CardSlot from "./CardSlot";
 export default function PokemonList({initialData}) {
   const [page,setPage] = useState(0);
   const [pokemons, setPokemons] = useState(initialData);
-  const [lastCard,setLastCard] = useState(null)
   const observer = useRef(null)
-
   useEffect(() => {
     if(page == 0) return;
     const fetchPokemonData = async () => {
@@ -35,11 +33,8 @@ export default function PokemonList({initialData}) {
   // 마지막 슬롯 콜백 ref
   const lastCardRef = useCallback(node => {
     if (!node) return;
-
-    // 이전 observer cleanup
     if (observer.current) observer.current.disconnect();
 
-    // 새 observer 등록
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
