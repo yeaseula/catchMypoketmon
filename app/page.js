@@ -7,4 +7,3 @@ export default async function Home() {
   const initialData = await res.json();
   return <PokemonList initialData={initialData} />;
 }
-

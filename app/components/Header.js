@@ -3,14 +3,102 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Link from 'next/link';
 import SearchModal from "./SearchModal";
+import styled, {keyframes} from "styled-components";
+
+const Bounce = keyframes`
+    0% {
+        box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+    }
+    50% {
+        box-shadow: 0 3px 16px rgb(21, 55, 111, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+    }
+`
+
+const gradientBack = keyframes`
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+`
+
+const HeaderContainer = styled.header`
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const MenuBox = styled.ul`
+    display: flex;
+    gap: 12px;
+    align-items: center;
+`
+const MenuBoxLi = styled.li`
+    padding: 6px;
+    border: 1px solid var(--sub-color);
+    background-color: var(--sub-color);
+    border-radius: 100%;
+    transition: all 0.2s;
+
+    &:hover {
+        box-shadow: 0 0 0 rgb(21, 55, 111, 0.5);
+        animation: ${Bounce} 1.7s ease infinite;
+    }
+`
+const SearchBox = styled(MenuBoxLi)`
+    border-radius:${(props)=>props.statement === 'on' ? '500px' : ''};
+    display: flex;
+    transition: all 0.4s;
+    &:focus-within {
+        box-shadow: 0 4px 16px rgb(21, 55, 111, 0.5);
+    }
+`
+const SearchPokemon = styled.input`
+    display: inline-block;
+    border: unset;
+    border-radius: 500px;
+    margin-right: 0;
+    background-color: var(--sub-color);
+    transition: all 0.4s;
+    width: ${(props)=>props.statement === 'on' ? '300px' : '0'};
+    padding-left: ${(props)=>props.statement === 'on' ? '12px' : '0'};
+    &:focus {
+        border: unset;
+        outline: unset;
+    }
+`
+const Button = styled.button`
+    width: 43px;
+    height: 43px;
+    border-radius: 500px;
+    background-color: var(--main-color);
+    background: ${
+        (props)=>props.statement === 'on' ??
+        'linear-gradient(270deg, var(--main-color-dark), var(--main-color))'};
+    background-size: ${(props)=>props.statement === 'on' ?? '200% 200%'};
+    animation: ${(props)=>props.statement === 'on' ?? `${gradientBack} 1.3s ease infinite`};
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4;
+`
 
 export default function Header () {
 
     const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const [onstate,setOnstate] = useState(false);
     const searchRef = useRef(null);
-    const inputRef = useRef(null)
-    const [searchValue,setSearchValue] = useState(''); //input value 실시간
+    const inputRef = useRef(null); //input value값 저장
     const [onModal,setModal] = useState(false);
     const [searchTerm,setSearchTerm] = useState([]);
 
@@ -63,8 +151,8 @@ export default function Header () {
     }, [])
 
     return (
-        <div>
-        <header>
+        <>
+        <HeaderContainer>
             <h1>
                 <Link href={PAGE_ADDRESS}>
                     <Image
@@ -76,39 +164,40 @@ export default function Header () {
                     ></Image>
                 </Link>
             </h1>
-            <nav className="menu-box">
-                <li className={`search ${onstate ? "on":""}`} ref={searchRef}>
-                    <input
+            <MenuBox className="menu-box">
+                <SearchBox statement={`${onstate ? "on":""}`} ref={searchRef}>
+                    <SearchPokemon
                     type="text"
                     name="search-pokemon"
                     id="search-pokemon"
                     placeholder="Search.."
+                    statement={`${onstate ? "on":""}`}
                     onKeyDown={handleKeyDownSearch}
                     onChange={e=>inputRef.current = e.target.value} />
-                    <button type="button" onClick={handleSearch}>
+                    <Button type="button" onClick={handleSearch} statement={`${onstate ? "on":""}`}>
                         <Image
                             src="/images/search-icon-w.svg"
                             alt="검색"
                             width={30}
                             height={30}
                         ></Image>
-                    </button>
-                </li>
-                <li className="my-scrap">
+                    </Button>
+                </SearchBox>
+                <MenuBoxLi className="my-scrap">
                     <Link href={`/scrap`}>
-                    <button type="button">
+                    <Button type="button">
                         <Image
                             src="/images/favorit-icon-w.svg"
                             alt="나의 카드 콜렉션으로 이동"
                             width={32}
                             height={32}
                         ></Image>
-                    </button>
+                    </Button>
                     </Link>
-                </li>
-            </nav>
-        </header>
+                </MenuBoxLi>
+            </MenuBox>
+        </HeaderContainer>
         {onModal && (<SearchModal searchTerm={searchTerm} onClose={() => setModal(false)}></SearchModal>)}
-        </div>
+        </>
     )
 }

@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/main.css"
 import "../styles/sub.css"
 import Header from "./components/Header.js";
+import StyledComponentsRegistry from '@/lib/registry';
 
 export const metadata = {
   title: "Catch My Pokemon!",
@@ -55,12 +56,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
         <body className={`${myFont.className} ${geistSans.variable} ${geistMono.variable}`}>
-        <div id="all-container">
-          <Header />
-          <main>
-            {children}
-          </main>
-        </div>
+          <StyledComponentsRegistry>
+            <div id="all-container">
+              <Header />
+              <main>
+                {children}
+              </main>
+            </div>
+        </StyledComponentsRegistry>
         </body>
     </html>
   );
