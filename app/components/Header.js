@@ -97,14 +97,15 @@ export default function Header () {
 
     const PAGE_ADDRESS = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const [onstate,setOnstate] = useState(false);
-    const searchRef = useRef(null);
-    const inputRef = useRef(null); //input value값 저장
+    const searchBoxRef = useRef(null);
+    const inputValueRef = useRef(null); //input value값 저장
+    const inputRef = useRef(null)
     const [onModal,setModal] = useState(false);
     const [searchTerm,setSearchTerm] = useState([]);
 
     const handleSearch = async () => {
         if(onstate == true) {
-            searchAction(inputRef.current)
+            searchAction(inputValueRef.current)
         } else {
             setOnstate((prev) => !prev)
         }
@@ -112,14 +113,14 @@ export default function Header () {
 
     const handleKeyDownSearch = async (e) => {
         if(e.key === 'Enter') {
-            searchAction(inputRef.current)
+            searchAction(inputValueRef.current)
         }
     }
 
-    function searchAction(inputRef){
-        const searchTarget = inputRef
+    function searchAction(inputValueRef){
+        const searchTarget = inputValueRef
         const SearchPokemon = async () => {
-            const SearchInput = document.getElementById('search-pokemon');
+            const SearchInput = inputRef.current;
             if(SearchInput.value == '') {
                 alert('검색어를 입력해주세요!')
                 return
@@ -142,7 +143,7 @@ export default function Header () {
 
     useEffect(()=>{
         const handleClickOut = (e) => {
-            if(searchRef.current && !searchRef.current.contains(e.target)){
+            if(searchBoxRef.current && !searchBoxRef.current.contains(e.target)){
                 setOnstate(false);
             }
         }
@@ -164,16 +165,17 @@ export default function Header () {
                     ></Image>
                 </Link>
             </h1>
-            <MenuBox className="menu-box">
-                <SearchBox statement={`${onstate ? "on":""}`} ref={searchRef}>
+            <MenuBox>
+                <SearchBox statement={`${onstate ? "on":""}`} ref={searchBoxRef}>
                     <SearchPokemon
                     type="text"
                     name="search-pokemon"
                     id="search-pokemon"
                     placeholder="Search.."
+                    ref={inputRef}
                     statement={`${onstate ? "on":""}`}
                     onKeyDown={handleKeyDownSearch}
-                    onChange={e=>inputRef.current = e.target.value} />
+                    onChange={e=>inputValueRef.current = e.target.value} />
                     <Button type="button" onClick={handleSearch} statement={`${onstate ? "on":""}`}>
                         <Image
                             src="/images/search-icon-w.svg"
@@ -183,7 +185,7 @@ export default function Header () {
                         ></Image>
                     </Button>
                 </SearchBox>
-                <MenuBoxLi className="my-scrap">
+                <MenuBoxLi>
                     <Link href={`/scrap`}>
                     <Button type="button">
                         <Image
