@@ -12,10 +12,20 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/api/pokemons/search/route": [
+    "/scrap/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/pokemons/search/route.js"
+      "static/chunks/app/scrap/page.js"
+    ],
+    "/pokemons/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/pokemons/[id]/page.js"
+    ],
+    "/api/pokemons/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/pokemons/route.js"
     ]
   }
 }
