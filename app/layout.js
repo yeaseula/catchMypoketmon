@@ -9,13 +9,6 @@ import StyledComponentsRegistry from '@/lib/registry';
 export const metadata = {
   title: "Catch My Pokemon!",
   description: "나만의 포켓몬을 잡아라! 포켓몬 도감 수집 웹사이트",
-  icons: {
-    icon: [
-        { url: "/images/favicon.png", type: "image/png" },
-    ],
-    shortcut: "/images/favicon.png",
-    apple: "/images/favicon.png",
-  },
   openGraph: {
     title: "Catch My Pokemon!",
     description: "나만의 포켓몬을 잡아라! 포켓몬 도감 수집 웹사이트",
